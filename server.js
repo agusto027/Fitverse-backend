@@ -25,7 +25,7 @@ app.use('/api/', apiLimiter); // Apply the rate limiting middleware to all API c
 // Standard Middleware
 // Strict CORS configuration to prevent unauthorized domains from accessing the API
 app.use(cors({
-  origin: '*', // Allow all origins for cloud deployment
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://fitverse-frontend-six.vercel.app'],
 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
