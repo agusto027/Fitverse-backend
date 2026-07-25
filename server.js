@@ -10,6 +10,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// CORS MUST be the very first middleware to handle OPTIONS preflight requests
+app.use(cors({
+  origin: ['https://fitverse-frontend-six.vercel.app', 'http://localhost:5173', 'http://127.0.0.1:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
+
 // Security & Rate Limiting Middleware
 app.use(helmet()); // Secures Express apps by setting various HTTP headers
 
@@ -23,13 +30,7 @@ const apiLimiter = rateLimit({
 app.use('/api/', apiLimiter); // Apply the rate limiting middleware to all API calls
 
 // Standard Middleware
-// Strict CORS configuration to prevent unauthorized domains from accessing the API
-app.use(cors({
-  origin: true,
-
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(express.json({ limit: '10kb' })); // Limit body payload to 10kb to prevent DOS
 
 app.use(express.json({ limit: '10kb' })); // Limit body payload to 10kb to prevent DOS
 
