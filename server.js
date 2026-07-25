@@ -25,7 +25,8 @@ app.use('/api/', apiLimiter); // Apply the rate limiting middleware to all API c
 // Standard Middleware
 // Strict CORS configuration to prevent unauthorized domains from accessing the API
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], // Add production URL here when deploying
+  origin: '*', // Allow all origins for cloud deployment
+
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
