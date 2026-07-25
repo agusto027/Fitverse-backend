@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 
 // CORS MUST be the very first middleware to handle OPTIONS preflight requests
 app.use(cors({
-  origin: ['https://fitverse-frontend-six.vercel.app', 'http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
